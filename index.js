@@ -1,57 +1,37 @@
-// Callbacks
-// No es más que una función dentro otra función
-// Responde al ejecutarse
-
-//setTimeout(function(){
-//    console.log("hola mundo");
-//}, 5000);
-
-//console.log("buenas tardes");
-
-//setTimeout(function(){
-//  console.log("kinal");
-//}, 3000)
-
-//const getUserById = (id) => {
-//   const usuario ={
-//        id, 
-//        nombre: "Josecarlos"
-//    }
-//    if (id == 20) {
-//        console.log("el id es 20 y existe");
-//    } else{
-//        console.log("el id no existe");
-//    }
-//}
-
-//getUserById(20, (err, usuario) => {
-//    if (err) {
-//        return console.log(err);
-//    }
-//    console.log("Usuario en la base de datos",usuario);
-//})
-
-const getUserById = (id, callback) =>{
-
-    const usuario ={
-        id,
-        nombre: "Jairo"
+//callbacks hell
+//BD en arrays
+let trabajadores = [
+    {
+        id: 1, nombre: "Josecarlos"
+    }, {
+        id: 2, nombre: "Marcela"
+    }, {
+        id: 3, nombre: "Mario"
     }
-// if (id === 20) {
-//     callback(`el usuario con id: ${id}, no existe en la db`);
-// } else {
-//     console.log(null, usuario);
-// }
+];
 
-id === 20
-    ?  callback(`el usuario con id: ${id}, no existe en la db`)
-    :  callback(null, usuario);
+let salarios = [
+    {
+        id: 1, monto: "2000"
+    }, {
+        id: 2, monto: "500"
+    }
+];
 
+//callbacks
+//funcion para obtener trabajadores por id
+const getTrabajador = (id, callback) => {
+    let encontrarTrabajador = trabajadores.find(t => t.id === id);
+        (!encontrarTrabajador)
+        ? console.log(err)
+        : callback(null, encontrarTrabajador);
 }
 
-getUserById(20, (err, usuario) =>{
+getTrabajador(1, (err, trabajador) => {
     if (err) {
-        return console.log(err);
+        return console.log(err)
+    } else {
+        console.log("Todo bien");
     }
-    console.log("usuario en la base de datos "+ usuario)
+    console.log(`El trabajador es ${trabajador.nombre}`);
 });
